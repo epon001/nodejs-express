@@ -49,8 +49,18 @@ exports.update = function(req, res){
 };
 
 exports.delete = function(req, res){
+	var nickname = req.params.nickname;
+	var newvcard = [];
+
 	console.log(">> Delete");
-	vcard = [];
+
+	vcard.forEach( function (entry) {
+		if (entry.nickname != nickname) {
+			console.log("Found");
+			newvcard.push(entry);
+		};
+	});
+	vcard = newvcard;
     res.end();
 };
 
